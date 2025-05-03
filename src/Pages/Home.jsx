@@ -2,6 +2,7 @@ import React from "react";
 import LeftSidebar from "../Layouts/LeftSidebar";
 import Header from "../Layouts/Header";
 import "../App.css";
+import RightSidebar from "../Layouts/RightSidebar";
 
 const Home = () => {
   return (
@@ -14,7 +15,9 @@ const Home = () => {
 
         <section className="main col-span-6">sds</section>
 
-        <section className="col-span-2">asd</section>
+        <section className="col-span-2">
+          <RightSidebar></RightSidebar>
+        </section>
       </div>
     </>
   );

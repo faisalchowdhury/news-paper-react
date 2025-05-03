@@ -8,8 +8,8 @@ const LeftSidebar = () => {
       .then((data) => setData(data));
   }, []);
   return (
-    <div>
-      <aside>
+    <div className="">
+      <aside className="">
         <div className="join join-vertical w-full">
           {data.map((category) => (
             <button className="btn join-item flex justify-start">
