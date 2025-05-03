@@ -4,7 +4,7 @@ import QZone from "./QZone";
 
 const RightSidebar = () => {
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 sticky h-screen top-5 shadow p-5">
       <h3 className="text-xl font-semibold">Login With</h3>
       <div className="space-y-2 ">
         {/* GitHub */}
