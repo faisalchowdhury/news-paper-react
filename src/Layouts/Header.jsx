@@ -6,7 +6,7 @@ import Marquee from "react-fast-marquee";
 
 const Header = () => {
   const dateStructure = format(new Date(), "EEEE , MMMM M , yyyy");
-  console.log(dateStructure);
+
   return (
     <>
       <div className="max-w-7xl mx-auto">
