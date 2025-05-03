@@ -14,6 +14,11 @@ const Category = () => {
   useEffect(() => {
     if (catid == 0) {
       setNews(data);
+    } else if (catid == 1) {
+      const todaysPick = data.filter(
+        (news) => news?.others?.is_today_pick === true
+      );
+      setNews(todaysPick);
     } else {
       const newsByCategory = data.filter((news) => news.category_id == catid);
       setNews(newsByCategory);

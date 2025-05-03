@@ -17,3 +17,7 @@
   font-optical-sizing: auto;
   font-weight: 500;
 }
+
+a.active {
+  background: #c5c5c5;
+}

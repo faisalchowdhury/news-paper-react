@@ -1,19 +1,21 @@
 import React from "react";
+import { FaEye, FaStar } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
+import { NavLink } from "react-router";
 
 const News = ({ news }) => {
-  console.log(news);
   return (
     <>
       <div className="space-y-5 shadow p-5 rounded-lg">
         <h1 className="text-xl">{news.title}</h1>
         <img
           className="w-full h-[400px] object-cover"
-          src={news.thumbnail_url}
+          src={news.image_url}
           alt=""
         />
         <div className="flex items-center gap-3">
-          <FaUser></FaUser> {news.author.name}
+          <img className="w-8 h-8 rounded-full" src={news.author.img} alt="" />{" "}
+          {news.author.name}
         </div>
 
         <p>
@@ -21,12 +23,27 @@ const News = ({ news }) => {
             <>
               {news.details.slice(0, 200)}
               ...
-              <button className="text-blue-700">Read More</button>
+              <NavLink to={`/single-news/${news.id}`} className="text-blue-700">
+                Read More
+              </NavLink>
             </>
           ) : (
             news.details
           )}
         </p>
+        <div className="flex justify-between">
+          <h4 className="flex items-center">
+            {Array.from({ length: news.rating.number }).map(() => (
+              <FaStar color="orange"></FaStar>
+            ))}
+            ({news.rating.number})
+          </h4>
+
+          <div className="flex items-center gap-2">
+            <FaEye></FaEye>
+            <p>{news.total_view}</p>
+          </div>
+        </div>
       </div>
     </>
   );
