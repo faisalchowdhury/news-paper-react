@@ -49,7 +49,7 @@ const Header = () => {
                 alt=""
               />
             )}
-            {user && user.email}
+            {user ? (user.email ? user.email : user.displayName) : null}
           </div>
 
           <div>
