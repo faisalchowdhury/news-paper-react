@@ -38,6 +38,7 @@ const Category = () => {
   return (
     <>
       <Header></Header>
+
       <div className="main max-w-7xl mx-auto grid md:grid-cols-10 gap-5">
         <section className="md:col-span-2">
           <LeftSidebar></LeftSidebar>

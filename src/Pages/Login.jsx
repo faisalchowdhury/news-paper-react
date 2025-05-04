@@ -17,7 +17,6 @@ const Login = () => {
 
     loginUser(email, password)
       .then((result) => {
-        console.log(result);
         navigate(location.state || "/");
       })
       .catch((err) => console.log(err));

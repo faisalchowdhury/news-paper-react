@@ -22,7 +22,6 @@ const Registration = () => {
     }
     formSubmit(email, password)
       .then((result) => {
-        console.log(result);
         setError("");
         // Update User
         updateProfile(auth.currentUser, {

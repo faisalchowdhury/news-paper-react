@@ -11,7 +11,6 @@ const SingleNews = () => {
   const singleNewsData = newsData.find(
     (singleNews) => singleNews.id === newsId
   );
-  console.log(singleNewsData);
 
   return (
     <>
