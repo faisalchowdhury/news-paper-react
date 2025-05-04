@@ -1,8 +1,7 @@
 import React from "react";
-import Header from "../Layouts/Header";
 import "../App.css";
 
-import { Navigate, Outlet } from "react-router";
+import { Navigate } from "react-router";
 
 const Home = () => {
   return (

@@ -1,41 +1,63 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "/logo.png";
 import user from "/user.png";
 import { format } from "date-fns";
 import Marquee from "react-fast-marquee";
+import { Link, NavLink, useLocation, useParams } from "react-router";
+import { AuthContext } from "../AuthProvider/AuthContext";
 
 const Header = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+
   const dateStructure = format(new Date(), "EEEE , MMMM M , yyyy");
+  const location = useLocation();
+  const { catid } = useParams();
 
   return (
     <>
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center space-y-2 py-5 ">
-          <img className="w-[200px]" src={logo} alt="" />
+          <Link to={"/"}>
+            {" "}
+            <img className="w-[200px]" src={logo} alt="" />
+          </Link>
           <h1 className="text-slate-500 text-xl">
             Your World, Your Voice, Your News.
           </h1>
           <p>{dateStructure}</p>
         </div>
+        {location.pathname == `/category/${catid}` ? (
+          <div className="bg-secondary p-3 flex items-center gap-5">
+            <button className="btn btn-accent text-white rounded-none">
+              Latest
+            </button>
 
-        <div className="bg-secondary p-3 flex items-center gap-5">
-          <button className="btn btn-accent text-white rounded-none">
-            Latest
-          </button>
-          <Marquee speed={70} pauseOnHover={true}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed nulla,
-            cum voluptas suscipit est, enim veritatis dignissimos odio sint
-            assumenda numquam, fugiat expedita dicta tempore! Tempora officiis
-            minus accusamus accusantium!
-          </Marquee>
-        </div>
+            <Marquee speed={70} pauseOnHover={true}>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed
+              nulla, cum voluptas suscipit est, enim veritatis dignissimos odio
+              sint assumenda numquam, fugiat expedita dicta tempore! Tempora
+              officiis minus accusamus accusantium!
+            </Marquee>
+          </div>
+        ) : null}
 
         <div className="flex justify-between items-center py-5 ">
-          <div></div>
+          <div className="flex items-center gap-3">
+            {user && (
+              <img
+                className="w-[50px] h-[50px] rounded-full"
+                src={user.photoURL}
+                alt=""
+              />
+            )}
+            {user && user.email}
+          </div>
 
           <div>
             <ul className="flex gap-5 ">
-              <li>Home</li>
+              <li>
+                <NavLink to={"/"}>Home</NavLink>
+              </li>
               <li>About</li>
               <li>Career</li>
             </ul>
@@ -43,7 +65,18 @@ const Header = () => {
 
           <div className="flex items-center gap-3">
             <img className="w-[30px]" src={user} alt="" />
-            <button className="btn btn-primary rounded-none">Login</button>
+
+            {!user ? (
+              <Link to={"/login"} className="btn btn-primary rounded-none">
+                Login
+              </Link>
+            ) : (
+              <button
+                className="btn btn-accent rounded-none text-white"
+                onClick={signOutUser}>
+                Logout
+              </button>
+            )}
           </div>
         </div>
       </div>

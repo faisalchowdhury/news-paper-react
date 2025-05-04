@@ -33,8 +33,8 @@ const News = ({ news }) => {
         </p>
         <div className="flex justify-between">
           <h4 className="flex items-center">
-            {Array.from({ length: news.rating.number }).map(() => (
-              <FaStar color="orange"></FaStar>
+            {Array.from({ length: news.rating.number }).map((_, i) => (
+              <FaStar key={i} color="orange"></FaStar>
             ))}
             ({news.rating.number})
           </h4>
