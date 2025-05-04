@@ -1,18 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import logo from "/logo.png";
 import user from "/user.png";
 import { format } from "date-fns";
 import Marquee from "react-fast-marquee";
 import { Link, NavLink, useLocation, useParams } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthContext";
+import { FaHamburger } from "react-icons/fa";
+import { RxCrossCircled } from "react-icons/rx";
 
 const Header = () => {
   const { user, signOutUser, headline } = useContext(AuthContext);
+  const [toggle, setToggle] = useState(false);
 
   const dateStructure = format(new Date(), "EEEE , MMMM M , yyyy");
   const location = useLocation();
   const { catid } = useParams();
 
+  const menu = (
+    <>
+      <li>
+        <NavLink to={"/"}>Home</NavLink>
+      </li>
+      <li>About</li>
+      <li>Career</li>
+    </>
+  );
   return (
     <>
       <div className="max-w-7xl mx-auto">
@@ -53,13 +65,19 @@ const Header = () => {
           </div>
 
           <div>
-            <ul className="flex gap-5 ">
-              <li>
-                <NavLink to={"/"}>Home</NavLink>
-              </li>
-              <li>About</li>
-              <li>Career</li>
-            </ul>
+            <div
+              onClick={() => setToggle((prev) => !prev)}
+              className="md:hidden relative z-10">
+              {toggle ? (
+                <FaHamburger size={26}></FaHamburger>
+              ) : (
+                <>
+                  <RxCrossCircled size={26} />
+                  <ul className="absolute p-5 bg-secondary">{menu}</ul>
+                </>
+              )}
+            </div>
+            <ul className="gap-5 hidden md:flex">{menu}</ul>
           </div>
 
           <div className="flex items-center gap-3">

@@ -9,9 +9,9 @@ const LeftSidebar = () => {
       .then((data) => setData(data));
   }, []);
   return (
-    <div className="sticky top-5 h-screen">
+    <div className="sticky top-5 md:h-screen">
       <aside className="">
-        <div className="join join-vertical w-full">
+        <div className="join join-vertical w-full ">
           {data.map((category) => (
             <NavLink
               key={category.id}
