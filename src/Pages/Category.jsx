@@ -6,6 +6,7 @@ import RightSidebar from "../Layouts/RightSidebar";
 import { useLoaderData, useParams } from "react-router";
 import News from "../Component/News";
 import { AuthContext } from "../AuthProvider/AuthContext";
+import Loading from "./Loading";
 
 const Category = () => {
   const data = useLoaderData();

@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 
 import { Navigate } from "react-router";
+import Loading from "./Loading";
 
 const Home = () => {
   return (

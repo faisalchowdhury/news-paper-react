@@ -5,6 +5,7 @@ import SingleNews from "../Pages/SingleNews";
 import Login from "../Pages/Login";
 import Registration from "../Pages/Registration";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Loading from "../Pages/Loading";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
     path: "category/:catid",
     Component: Category,
     loader: () => fetch("../news.json"),
+    hydrateFallbackElement: <Loading></Loading>,
   },
   {
     path: "single-news/:newsId",
@@ -24,6 +26,7 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: () => fetch("../news.json"),
+    hydrateFallbackElement: <Loading></Loading>,
   },
   {
     path: "login",
