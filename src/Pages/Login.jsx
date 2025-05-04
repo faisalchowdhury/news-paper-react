@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import Header from "../Layouts/Header";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthContext";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  console.log(location);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -16,7 +20,7 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log(result);
-        navigate("/");
+        navigate(location.state || "/");
       })
       .catch((err) => console.log(err));
   };

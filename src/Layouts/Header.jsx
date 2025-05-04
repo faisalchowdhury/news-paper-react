@@ -7,7 +7,7 @@ import { Link, NavLink, useLocation, useParams } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthContext";
 
 const Header = () => {
-  const { user, signOutUser } = useContext(AuthContext);
+  const { user, signOutUser, headline } = useContext(AuthContext);
 
   const dateStructure = format(new Date(), "EEEE , MMMM M , yyyy");
   const location = useLocation();
@@ -33,10 +33,9 @@ const Header = () => {
             </button>
 
             <Marquee speed={70} pauseOnHover={true}>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed
-              nulla, cum voluptas suscipit est, enim veritatis dignissimos odio
-              sint assumenda numquam, fugiat expedita dicta tempore! Tempora
-              officiis minus accusamus accusantium!
+              {headline.map((heading) => (
+                <p>{heading} |</p>
+              ))}
             </Marquee>
           </div>
         ) : null}

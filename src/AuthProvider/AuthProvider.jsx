@@ -10,6 +10,8 @@ import { auth } from "../Firebase/firebase.config";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [headline, setHeadline] = useState([]);
 
   // Create User
   const formSubmit = (email, password) => {
@@ -18,6 +20,7 @@ const AuthProvider = ({ children }) => {
   // observer
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
+    setLoading(false);
   });
 
   // Login
@@ -36,6 +39,9 @@ const AuthProvider = ({ children }) => {
     user,
     signOutUser,
     loginUser,
+    loading,
+    setHeadline,
+    headline,
   };
 
   return (

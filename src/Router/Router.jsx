@@ -4,6 +4,7 @@ import Category from "../Pages/Category";
 import SingleNews from "../Pages/SingleNews";
 import Login from "../Pages/Login";
 import Registration from "../Pages/Registration";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +18,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "single-news/:newsId",
-    Component: SingleNews,
+    element: (
+      <PrivateRoute>
+        <SingleNews></SingleNews>
+      </PrivateRoute>
+    ),
     loader: () => fetch("../news.json"),
   },
   {

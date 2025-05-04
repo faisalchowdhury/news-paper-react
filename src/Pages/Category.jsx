@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LeftSidebar from "../Layouts/LeftSidebar";
 import Header from "../Layouts/Header";
 import "../App.css";
 import RightSidebar from "../Layouts/RightSidebar";
 import { useLoaderData, useParams } from "react-router";
 import News from "../Component/News";
+import { AuthContext } from "../AuthProvider/AuthContext";
 
 const Category = () => {
   const data = useLoaderData();
   const { catid } = useParams();
   const [news, setNews] = useState();
+  const { setHeadline } = useContext(AuthContext);
 
   useEffect(() => {
     if (catid == 0) {
@@ -18,6 +20,8 @@ const Category = () => {
       const todaysPick = data.filter(
         (news) => news?.others?.is_today_pick === true
       );
+      const headlineTitle = todaysPick.map((newsData) => newsData.title);
+      setHeadline(headlineTitle);
       setNews(todaysPick);
     } else {
       const newsByCategory = data.filter((news) => news.category_id == catid);
